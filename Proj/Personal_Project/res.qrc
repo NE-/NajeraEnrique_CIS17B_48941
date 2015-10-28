@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>splash.png</file>
+        <file>icon.png</file>
+        <file>player.png</file>
+        <file>bullet.png</file>
+        <file>enemy.png</file>
+        <file>bkgd.png</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>bullet.wav</file>
+        <file>jump.wav</file>
+        <file>bkgd.mp3</file>
+    </qresource>
+</RCC>
