@@ -41,6 +41,7 @@ void Enemy::move()
     setPos(x(), y() + 5);
     if (y() < 0)
     {
+        //game->score->decrease(); bugs with player object
         scene()->removeItem(this);
         delete this;
     }

@@ -19,6 +19,7 @@ public:
     Score(QGraphicsItem *parent=0);
 
     void increase();
+    void decrease();
     int getScore() const;
 private:
     int score;

@@ -57,10 +57,14 @@ void GameWindow::createActions()
     exitAction->setStatusTip("Quits current game");
     connect(exitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 
-
     aboutAction = new QAction(tr("&About Game"), this);
     aboutAction->setStatusTip(tr("About the game"));
     connect(aboutAction, SIGNAL(triggered()),this,SLOT(about()));
+
+    speedAction = new QAction(tr("&FASTER"), this);
+    speedAction->setShortcut(tr("Ctrl+G"));
+    speedAction->setStatusTip("Speeds up enemies");
+    //connect(speedAction, SIGNAL(triggered()), enemy, SLOT(setEnemySpeed(100)));
 }// End method createActions
 
 // Start method createMenus creates menus for actions
@@ -77,6 +81,9 @@ void GameWindow::createMenus()
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(aboutAction);
+
+    xtraMenu = menuBar()->addMenu(tr("&Xtra"));
+    xtraMenu->addAction(speedAction);
 
 }// End method createMenus
 

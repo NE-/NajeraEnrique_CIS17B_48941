@@ -24,9 +24,6 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 public:
     Enemy();
 
-    // Mutator Functioons
-    void setEnemySpeed(int);
-
     // Accessor Functions
     int getEnemySpeed() const;
 private:
@@ -38,6 +35,8 @@ private:
     QTimer *timer;
 public slots:
     void move(); // Moves enemy down
+    // Mutator Functions
+    void setEnemySpeed(int); // Speed enemy
 };
 
 #endif // ENEMY_H

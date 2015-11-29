@@ -8,7 +8,7 @@
 #include "score.h"
 
 // Start constructor Score
-Score::Score(QGraphicsItem *parent)
+Score::Score(QGraphicsItem *parent) : QGraphicsTextItem(parent)
 {
     score = 0;
 
@@ -20,10 +20,18 @@ Score::Score(QGraphicsItem *parent)
 // Start method increase
 void Score::increase()
 {
-    // Increase score then update
+    // Increase score then update text
     score++;
     setPlainText(QString("Score: ") + QString::number(score));
 }// End method increase
+
+// Start method decrease
+void Score::decrease()
+{
+    // Decrease score then update text
+    score--;
+    setPlainText(QString("Score: ") + QString::number(score));
+}// End method decrease
 
 // Start method getScore
 int Score::getScore() const

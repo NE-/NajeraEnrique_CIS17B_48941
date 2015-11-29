@@ -29,8 +29,8 @@ Game::Game(QWidget *parent)
 
     scene->addItem(player);
 
-    //score = new Score();
-    //scene->addItem(score);
+    score = new Score();
+    scene->addItem(score);
 
     // Enemy Spawner
     timer = new QTimer();

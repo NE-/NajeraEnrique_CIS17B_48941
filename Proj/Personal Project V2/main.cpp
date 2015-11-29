@@ -11,6 +11,8 @@
 #include "gamewindow.h"
 #include "game.h"
 
+Game *game; // Make global
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

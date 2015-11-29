@@ -19,7 +19,7 @@
 
 // USER_LIBS
 #include "player.h"
-//#include "score.h"
+#include "score.h"
 
 class Game : public QGraphicsView
 {
@@ -31,7 +31,7 @@ private:
     QTimer *timer;
 
     Player *player;
-    //Score  *score;
+    Score  *score;
 };
 
 #endif // GAME_H

@@ -25,6 +25,7 @@
 
 // User_lIBS
 #include "login.h"
+#include "enemy.h"
 
 // Start class GameWindow
 class GameWindow : public QMainWindow
@@ -51,14 +52,17 @@ private:
     // Create objects
     QMenu   *fileMenu;
     QMenu   *helpMenu;
+    QMenu   *xtraMenu;
     QAction *newAction;
     QAction *loadAction;
     QAction *saveAction;
     QAction *multiplayerAction;
     QAction *exitAction;
     QAction *aboutAction;
+    QAction *speedAction;
 
     Login *login;
+    Enemy *enemy;
 }; // End class GameWindow
 
 #endif // GAMEWINDOW_H
