@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>images/bkgd.png</file>
+        <file>images/bkgd_debug.png</file>
+        <file>images/buttons.png</file>
+        <file>images/cursor.png</file>
+        <file>images/icon.png</file>
+        <file>images/player.png</file>
+        <file>images/things.png</file>
+    </qresource>
+    <qresource prefix="/sound"/>
+</RCC>
