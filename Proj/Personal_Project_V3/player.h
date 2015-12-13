@@ -21,12 +21,19 @@
 class Player : public QGraphicsPixmapItem
 {
 public:
+    // Constructor
     Player();
 
+    // Key events
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
 
-    void collisions();
+    // Function Prototypes
+    void collisions(); // Checks collisions with Things
+
+    // Mutator and Accessor functions
+    void setName(QString n){ name = n; }
+    QString getName() const{ return name; }
 
     int posX;
     int posY;
@@ -41,7 +48,11 @@ public:
     char pState;  // State of player
     char facing;  // Holds what thing player is facing
 
+
+
     QPixmap *sheet_player;
+private:
+    QString name;
 
 };// End class Player
 

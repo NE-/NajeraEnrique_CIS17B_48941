@@ -23,11 +23,16 @@ Game::Game()
 
     // Create buttons
     btn_new = new Button(0);   // New Game
-    connect(btn_new, SIGNAL(click()), this, SLOT(newGame()));
+    connect(btn_new, SIGNAL(click()), this, SLOT(form()));
     btn_cont = new Button(32); // Continue
     connect(btn_cont, SIGNAL(click()), this, SLOT(newGame()));
     btn_quit = new Button(64); // Quit
     //connect(btn_quit, SIGNAL(click()), , SLOT());
+
+    // Set toolTips for buttons
+    btn_new->setToolTip("Start a new game");
+    btn_cont->setToolTip("Continue from last save file");
+    btn_quit->setToolTip("Quits application");
 
     // Add buttons
     scene->addItem(btn_new);
@@ -41,6 +46,33 @@ Game::Game()
     btn_quit->setPos(50,150);
 
 }// End constructor Game
+
+// Start method form
+void Game::form()
+{
+    // Declare Variables
+    bool dispForm = true,
+         isMatch;
+
+    // Must match: [L][astname]{1-19} + 'space' + [F][irstname]{1-19}
+    QRegularExpression re("^[A-Z][a-z]+(\\s|,)[A-Z][a-z]{1,19}$");
+
+    dialog_form = new QInputDialog();
+
+    while(dispForm)
+    {
+        name = dialog_form->getText(this, "Enter your name", "Lastname  Firstname (2-19 letters) ",
+                                            QLineEdit::Normal, "Player One", &isMatch);
+        QRegularExpressionMatch reMatch = re.match(name);
+
+        if (reMatch.hasMatch() == true)
+        {
+            //player->setName(name); crashes
+            dispForm = false;
+            newGame();
+        }
+    }// End displaying form
+}// End method form
 
 // Start method newGame
 void Game::newGame()

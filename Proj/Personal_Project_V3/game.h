@@ -12,10 +12,17 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+
 #include <QObject>
 #include <QTimer>
+
 #include <QMediaPlayer>
+
 #include <QIcon>
+#include <QInputDialog>
+#include <QRegExp>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
 
 // USER_LIBS
 #include "gamewindow.h"
@@ -33,6 +40,9 @@ class Game : public QGraphicsView
 public:
     Game();
 
+    QString name; // Public for I/O
+                  // No mutator/Accessor for speed
+
 private:
     int frame; // Holds frame number
 
@@ -40,6 +50,8 @@ private:
     QGraphicsScene *scene;
     QMediaPlayer   *snd_bkgdMusic;
     QTimer         *timer;
+    QInputDialog   *dialog_form;
+
 
     Button *btn_new;
     Button *btn_cont;
@@ -88,8 +100,9 @@ private:
     Things *couch3_R;
 
 public slots:
-    void update();
-    void newGame();
+    void update();  // Updates graphics
+    void newGame(); // Creates all game obj
+    void form();    // Takes in user's info
 };// End class Game
 
 #endif // GAME_H

@@ -89,6 +89,8 @@ void GameWindow::newGame()
 // Start mehtod saveGame saves game state
 bool GameWindow::saveGame()
 {
+    Game *game = new Game();
+
     QString fileName = QFileDialog::getSaveFileName(NULL, "Save Game", QString(), "Save File (*.sav);;All Files (*)");
 
     QFile file(fileName);
@@ -99,9 +101,8 @@ bool GameWindow::saveGame()
     //accept newline
     file.setTextModeEnabled(true);
 
-    out << "Name" << "\n";
-    out << "Position" << "\n";
-    out << "Time" << "\n";
+    out << "Name " << game->name << "\n"; // Doesn't output name
+    out << "Time " << "\n";
 
     file.close();
 
