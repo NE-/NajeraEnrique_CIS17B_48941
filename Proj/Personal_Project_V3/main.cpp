@@ -1,7 +1,8 @@
 /*
  * File:    main.cpp
  * Author:  Enrique Najera
- * Purpose: Create splashscreen, game window, Game object
+ * Purpose: Create splashscreen, game window,
+ *          Game object, connections
  * 16 December 2015
  */
 
@@ -13,6 +14,7 @@
 #include "database.h"
 #include "gamewindow.h"
 #include "game.h"
+#include "clock.h"
 
 // Start method main
 int main(int argc, char *argv[])
@@ -31,8 +33,13 @@ int main(int argc, char *argv[])
 
     splash->showMessage(QObject::tr("Establishing connections..."),
                         topRight, Qt::white);
+    // Database connection
     if(!db->createConnection())
         return 1;
+    // Client connection
+    Clock clock;
+    clock.show();
+
 
     splash->showMessage(QObject::tr("Setting up main window..."),
                         topRight, Qt::white);

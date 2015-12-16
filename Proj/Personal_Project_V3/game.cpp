@@ -8,8 +8,6 @@
 // USER_LIBS
 #include "game.h"
 
-#include <QDebug>
-
 // Start constructor Game
 Game::Game()
 {
@@ -19,7 +17,7 @@ Game::Game()
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setBackgroundBrush(QPixmap(""));
+    setBackgroundBrush(QPixmap(":/img/images/introBKGD.png"));
 
     // Create buttons
     btn_new = new Button(0);   // New Game
@@ -59,6 +57,7 @@ void Game::form()
 
     dialog_form = new QInputDialog();
 
+    // Display form while incorrect input
     while(dispForm)
     {
         name = dialog_form->getText(this, "Enter your name", "Lastname  Firstname (2-19 letters) ",
@@ -77,11 +76,21 @@ void Game::form()
 // Start method newGame
 void Game::newGame()
 {
+    // Start name thread
+    td_name = new Thread();
+    td_name->setMessage(name);
+    td_name->start();
+
     bool isGhostExist = true; // Ghost in window
+
     // Remove buttons
     scene->removeItem(btn_new);
     scene->removeItem(btn_cont);
     scene->removeItem(btn_quit);
+
+    delete btn_new;
+    delete btn_cont;
+    delete btn_quit;
 
     setBackgroundBrush(QBrush(Qt::black));
 
@@ -179,14 +188,14 @@ void Game::newGame()
     snd_flip = new QMediaPlayer();
     snd_flip->setMedia(QUrl("qrc:/sound/sounds/SFX/flip.mp3"));
 
-    // Create collision detector
-    //collisions = new Collisions();
-
     // Timer calls game update
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(10);
 
+    // Stop thread name
+    td_name->stop();
+    td_name->wait();
 
     setFixedSize(384,384);
 }// End method newGame
@@ -196,9 +205,6 @@ void Game::update()
 {
     // Hide cursor
     setCursor(QCursor(QPixmap(":/img/images/cursor.png")));
-
-    // Check colliding items
-    //collisions->checkCollisions();
 
     // Restart frame every 4 + 4 frames
     if (player->frame > 8)
@@ -246,7 +252,7 @@ void Game::update()
     couch2_R->setPos(   room->x() + 336, room->y() + 224);
     couch3_R->setPos(   room->x() + 336, room->y() + 192);
 
-    // Ghost window
+    // Ghost in the window
     if (player->posX < 53 && player->posY > 128)
     {
         if (!isGhostExist)

@@ -1,10 +1,20 @@
+/*
+ * File:    database.cpp
+ * Author:  Enrique Najera
+ * Purpose: Connect to database to retrieve names
+ * 16 December 2015
+ */
+
+// USER_LIBS
 #include "database.h"
 
+// Start constructor Database
 Database::Database()
 {
 
-}
+}// End constructor Database
 
+// Start method createConnection
 bool Database::createConnection()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
@@ -21,5 +31,5 @@ bool Database::createConnection()
     }
 
     return true;
-}
+}// End method createConnections
 

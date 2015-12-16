@@ -1,14 +1,22 @@
-#include "switchdialog.h"
-#include <QDebug>
+/*
+ * File:    switchdialog.cpp
+ * Author:  Enrique Najera
+ * Purpose: Prompts if player wants to flip object
+ * 16 December 2015
+ */
 
+// USER_LIBS
+#include "switchdialog.h"
+
+// Start constructor SwitchDialog
 SwitchDialog::SwitchDialog(QWidget *parent)
 {
     // INIT vars
     isClicked = false;
 
+    // Create buttons
     label = new QLabel(tr("Change/flip object? "));
     btn_yes = new QPushButton(tr("Yes"));
-    //btn_yes->setDefault(true);
     btn_no = new QPushButton(tr("No"));
     btn_no->setDefault(true);
 
@@ -33,23 +41,23 @@ SwitchDialog::SwitchDialog(QWidget *parent)
 
     setWindowTitle("Change?");
     setFixedHeight(sizeHint().height());
-}
+}// End constructor SwitchDialog
 
+// Start method yesClicked
 void SwitchDialog::yesClicked()
 {
-    qDebug() << "CLICKED YES";
-
     setYesClicked(true);
     close();
-}
+}// End method yesClicked
 
+// Start method setYesClicked
 void SwitchDialog::setYesClicked(bool c)
 {
     isClicked = c;
-}
+}// End method setYesClicked
 
+// Start method getYesClicked
 bool SwitchDialog::getYesClicked() const
 {
     return isClicked;
-}
-
+}// End method getYesClicked

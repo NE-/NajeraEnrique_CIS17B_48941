@@ -8,8 +8,6 @@
 // USER_LIBS
 #include "player.h"
 
-#include <QDebug>
-
 // Start constructor Player
 Player::Player()
 {
@@ -40,8 +38,6 @@ Player::Player()
 // Start method keyPressEvent
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "X: " << posX;
-    qDebug() << "Y: " << posY;
     // Player movement
     if (event->key() == Qt::Key_Right)
     {

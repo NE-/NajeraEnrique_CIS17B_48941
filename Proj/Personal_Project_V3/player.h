@@ -56,7 +56,6 @@ private:
     QString name;
     QMediaPlayer *snd_walk;
 
-
 };// End class Player
 
 #endif // PLAYER_H

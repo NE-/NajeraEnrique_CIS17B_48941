@@ -101,13 +101,12 @@ bool GameWindow::saveGame()
     QFile file(fileName);
     file.open(QIODevice::ReadWrite);
 
-    QTextStream out(&file);
+        QTextStream out(&file);
 
-    //accept newline
-    file.setTextModeEnabled(true);
+        file.setTextModeEnabled(true);
 
-    out << "Name " << game->name << "\n"; // Doesn't output name
-    out << "Time " << "\n";
+        out << "Name " << game->name << "\n"; // Doesn't output name
+        out << "Time " << "\n";
 
     file.close();
 
@@ -123,19 +122,15 @@ void GameWindow::loadGame()
     QFile file(fileName);
     file.open(QIODevice::ReadWrite);
 
-    QTextStream in(&file);
-    file.setTextModeEnabled(true);
+        QTextStream in(&file);
+        file.setTextModeEnabled(true);
 
-    QString inText;
+        QString inText;
 
-    newGame();
+        newGame();
 
-    inText = in.readLine();
-
-    inText = in.readLine();
-
-    inText = in.readLine();
-
+        inText = in.readLine();
+        inText = in.readLine();
 
     file.close();
 
@@ -158,10 +153,12 @@ void GameWindow::closeEvent(QCloseEvent *event)
     qApp->quit();
 }// End method closeEvent
 
-// Start method players
-
+// Start method players list player names
 void GameWindow::players()
 {
+    int i = 0;
+    QVector<QString> first(5);
+
     QSqlQuery query;
     query.exec("SELECT * FROM names");
 
@@ -175,6 +172,7 @@ void GameWindow::players()
         QString dbFirstName = query.value(2).toString();
         qDebug() << "Name: " << qPrintable(dbLastName) << ", "
                              << qPrintable(dbFirstName);
+        first.append(dbFirstName);
     }
 }// End method players
 

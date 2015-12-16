@@ -19,8 +19,6 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
-#include <QDebug>
-
 // USER_LIBS
 #include "game.h"
 

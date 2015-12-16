@@ -31,6 +31,7 @@
 #include "player.h"
 #include "room.h"
 #include "things.h"
+#include "thread.h"
 //#include "collisions.h"
 
 // Start class Game
@@ -63,6 +64,7 @@ private:
 
     Player *player;
     Room   *room;
+    Thread *td_name;
 
     Things *table1_L;
     Things *table2_L;

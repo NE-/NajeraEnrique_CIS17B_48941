@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql\
+QT       += core gui sql network\
             multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -21,7 +21,9 @@ SOURCES += main.cpp \
     button.cpp \
     things.cpp \
     switchdialog.cpp \
-    database.cpp
+    database.cpp \
+    thread.cpp \
+    clock.cpp
 
 HEADERS  += \
     game.h \
@@ -31,7 +33,9 @@ HEADERS  += \
     button.h \
     things.h \
     switchdialog.h \
-    database.h
+    database.h \
+    thread.h \
+    clock.h
 
 FORMS    +=
 
