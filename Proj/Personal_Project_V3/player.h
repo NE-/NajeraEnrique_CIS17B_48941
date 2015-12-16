@@ -13,6 +13,7 @@
 #include <QKeyEvent>
 #include <QGraphicsScene>
 #include <QPixmap>
+#include <QMediaPlayer>
 
 // USER_LIBS
 #include "room.h"
@@ -53,6 +54,8 @@ public:
     QPixmap *sheet_player;
 private:
     QString name;
+    QMediaPlayer *snd_walk;
+
 
 };// End class Player
 

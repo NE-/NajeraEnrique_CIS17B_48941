@@ -31,6 +31,10 @@ Player::Player()
     posX = 256 / 2;
     posY = 256 / 2;
 
+    // Create sounds
+    snd_walk = new QMediaPlayer;
+    snd_walk->setMedia(QUrl("qrc:/sound/sounds/SFX/footstep.mp3"));
+
 }// End constructor Player
 
 // Start method keyPressEvent
@@ -41,6 +45,12 @@ void Player::keyPressEvent(QKeyEvent *event)
     // Player movement
     if (event->key() == Qt::Key_Right)
     {
+        // play walk sound
+        if (snd_walk->state() == QMediaPlayer::PlayingState)
+            snd_walk->setPosition(0);
+        else if (snd_walk->state() == QMediaPlayer::StoppedState)
+            snd_walk->play();
+
         pState = 'R';
         if (posX > -87)
         {
@@ -52,6 +62,12 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Left)
     {
+        // play walk sound
+        if (snd_walk->state() == QMediaPlayer::PlayingState)
+            snd_walk->setPosition(0);
+        else if (snd_walk->state() == QMediaPlayer::StoppedState)
+            snd_walk->play();
+
         pState = 'L';
         if (posX < 243)
         {
@@ -63,6 +79,12 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Up)
     {
+        // play walk sound
+        if (snd_walk->state() == QMediaPlayer::PlayingState)
+            snd_walk->setPosition(0);
+        else if (snd_walk->state() == QMediaPlayer::StoppedState)
+            snd_walk->play();
+
         pState = 'U';
         if (posY < 243)
         {
@@ -74,6 +96,12 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Down)
     {
+        // play walk sound
+        if (snd_walk->state() == QMediaPlayer::PlayingState)
+            snd_walk->setPosition(0);
+        else if (snd_walk->state() == QMediaPlayer::StoppedState)
+            snd_walk->play();
+
         pState = 'D';
 
         if (posY > -97)
@@ -88,8 +116,6 @@ void Player::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Z)
     {
         pState = 'I';
-        qDebug() << "state I";
-
     }
     // In-Game Menu
     else if (event->key() == Qt::Key_X)

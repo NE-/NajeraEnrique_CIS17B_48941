@@ -24,7 +24,7 @@ GameWindow::GameWindow()
     // Window properties
     setWindowIcon(QIcon(":/img/images/icon.png"));
     setWindowTitle(tr("Room 3"));
-    setFixedSize(384,384); // 200 x 200
+    setFixedSize(200,200); // 200 x 200
     setWindowFlags(Qt::WindowTitleHint);
 }// End method GameWindow
 
@@ -57,9 +57,14 @@ void GameWindow::createActions()
     connect(exitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 
 
+    playersAction = new QAction(tr("&Players List"), this);
+    playersAction->setStatusTip(tr("List of all players"));
+    connect(playersAction, SIGNAL(triggered()),this,SLOT(players()));
+
     aboutAction = new QAction(tr("&About Game"), this);
     aboutAction->setStatusTip(tr("About the game"));
     connect(aboutAction, SIGNAL(triggered()),this,SLOT(about()));
+
 }// End method createActions
 
 // Start method createMenus
@@ -75,8 +80,8 @@ void GameWindow::createMenus()
     fileMenu->addAction(exitAction);
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
+    helpMenu->addAction(playersAction);
     helpMenu->addAction(aboutAction);
-
 }// End method createMenus
 
 // Start method newGame INIT main window
@@ -152,6 +157,26 @@ void GameWindow::closeEvent(QCloseEvent *event)
 {
     qApp->quit();
 }// End method closeEvent
+
+// Start method players
+
+void GameWindow::players()
+{
+    QSqlQuery query;
+    query.exec("SELECT * FROM names");
+
+    if(!query.isActive())
+        QMessageBox::warning(this, tr("Database Error"),
+                             query.lastError().text());
+
+    while(query.next())
+    {
+        QString dbLastName = query.value(1).toString();
+        QString dbFirstName = query.value(2).toString();
+        qDebug() << "Name: " << qPrintable(dbLastName) << ", "
+                             << qPrintable(dbFirstName);
+    }
+}// End method players
 
 // Start method about
 void GameWindow::about()

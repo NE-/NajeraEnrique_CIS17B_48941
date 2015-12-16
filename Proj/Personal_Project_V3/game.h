@@ -45,13 +45,15 @@ public:
 
 private:
     int frame; // Holds frame number
+    bool isGhostExist;
 
     // Create Objects
     QGraphicsScene *scene;
-    QMediaPlayer   *snd_bkgdMusic;
     QTimer         *timer;
     QInputDialog   *dialog_form;
 
+    QMediaPlayer   *snd_bkgdMusic;
+    QMediaPlayer   *snd_flip;
 
     Button *btn_new;
     Button *btn_cont;

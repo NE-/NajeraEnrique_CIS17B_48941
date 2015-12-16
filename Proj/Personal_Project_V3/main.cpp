@@ -10,6 +10,7 @@
 #include <QSplashScreen>
 
 // USER_LIBS
+#include "database.h"
 #include "gamewindow.h"
 #include "game.h"
 
@@ -23,7 +24,15 @@ int main(int argc, char *argv[])
     splash->setPixmap(QPixmap(":/img/images/splash.png"));
     splash->show();
 
+    // Create database object
+    Database *db = new Database();
+
     Qt::Alignment topRight = Qt::AlignRight | Qt::AlignTop;
+
+    splash->showMessage(QObject::tr("Establishing connections..."),
+                        topRight, Qt::white);
+    if(!db->createConnection())
+        return 1;
 
     splash->showMessage(QObject::tr("Setting up main window..."),
                         topRight, Qt::white);

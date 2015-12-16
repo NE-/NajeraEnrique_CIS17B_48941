@@ -16,6 +16,10 @@
 #include <QMessageBox>
 #include <QMenuBar>
 #include <QFileDialog>
+#include <QSqlQuery>
+#include <QSqlError>
+
+#include <QDebug>
 
 // USER_LIBS
 #include "game.h"
@@ -34,6 +38,8 @@ private slots:
     void loadGame();
     bool saveGame();
     void multiplayer();
+
+    void players();
     void about();
 
 private:
@@ -50,6 +56,7 @@ private:
     QAction *saveAction;
     QAction *multiplayerAction;
     QAction *exitAction;
+    QAction *playersAction;
     QAction *aboutAction;
 
 };// End class GameWindow

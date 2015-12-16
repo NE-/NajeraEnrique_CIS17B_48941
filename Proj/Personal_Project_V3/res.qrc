@@ -7,6 +7,11 @@
         <file>images/icon.png</file>
         <file>images/player.png</file>
         <file>images/things.png</file>
+        <file>images/splash.png</file>
     </qresource>
-    <qresource prefix="/sound"/>
+    <qresource prefix="/sound">
+        <file>sounds/Music/bkgd.mp3</file>
+        <file>sounds/SFX/footstep.mp3</file>
+        <file>sounds/SFX/flip.mp3</file>
+    </qresource>
 </RCC>

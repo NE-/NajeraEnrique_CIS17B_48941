@@ -11,5 +11,5 @@
 // Start constructor Room
 Room::Room()
 {
-    setPixmap(QPixmap(":/img/images/bkgd_debug.png"));
+    setPixmap(QPixmap(":/img/images/bkgd.png"));
 }// End constructor Room

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui \
+QT       += core gui sql\
             multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     gamewindow.cpp \
     button.cpp \
     things.cpp \
-    switchdialog.cpp
+    switchdialog.cpp \
+    database.cpp
 
 HEADERS  += \
     game.h \
@@ -29,7 +30,8 @@ HEADERS  += \
     gamewindow.h \
     button.h \
     things.h \
-    switchdialog.h
+    switchdialog.h \
+    database.h
 
 FORMS    +=
 

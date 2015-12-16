@@ -77,6 +77,7 @@ void Game::form()
 // Start method newGame
 void Game::newGame()
 {
+    bool isGhostExist = true; // Ghost in window
     // Remove buttons
     scene->removeItem(btn_new);
     scene->removeItem(btn_cont);
@@ -151,11 +152,11 @@ void Game::newGame()
 
     // -right
     scene->addItem(table1_R);
-    scene->addItem(flower1_R);
-    scene->addItem(window1_R);
+    scene->addItem(flower2_R);
+    scene->addItem(window2_R);
     scene->addItem(chair1_R);
     scene->addItem(chair2_R);
-    scene->addItem(picture1_R);
+    scene->addItem(picture2_R);
     scene->addItem(carpet_R);
     scene->addItem(cupboard1_R);
     scene->addItem(couch1_R);
@@ -171,6 +172,13 @@ void Game::newGame()
     // Create dialogs
     switchDialog = new SwitchDialog();
 
+    // Create and play background music
+    snd_bkgdMusic = new QMediaPlayer();
+    snd_bkgdMusic->setMedia(QUrl("qrc:/sound/sounds/Music/bkgd.mp3"));
+    snd_bkgdMusic->play();
+    snd_flip = new QMediaPlayer();
+    snd_flip->setMedia(QUrl("qrc:/sound/sounds/SFX/flip.mp3"));
+
     // Create collision detector
     //collisions = new Collisions();
 
@@ -179,10 +187,6 @@ void Game::newGame()
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(10);
 
-    // Create and play background music
-    snd_bkgdMusic = new QMediaPlayer();
-    snd_bkgdMusic->setMedia(QUrl(""));
-    snd_bkgdMusic->play();
 
     setFixedSize(384,384);
 }// End method newGame
@@ -242,13 +246,35 @@ void Game::update()
     couch2_R->setPos(   room->x() + 336, room->y() + 224);
     couch3_R->setPos(   room->x() + 336, room->y() + 192);
 
+    // Ghost window
+    if (player->posX < 53 && player->posY > 128)
+    {
+        if (!isGhostExist)
+        {
+            scene->removeItem(window2_R);
+            scene->removeItem(player);
+            scene->addItem(window1_R);
+            scene->addItem(player);
+            player->setFocus();
+            isGhostExist = true;
+        }
+    }
+
     // Check interactions
     // -cupboard
     if (player->pState == 'I' && player->facing == 'C')
     {
         switchDialog->show();
+
         if (switchDialog->getYesClicked() == true)
         {
+            // play flip sound
+            if (snd_flip->state() == QMediaPlayer::PlayingState)
+                snd_flip->setPosition(0);
+            else if (snd_flip->state() == QMediaPlayer::StoppedState)
+                snd_flip->play();
+
+            // Change item
             scene->removeItem(cupboard1_L);
             scene->removeItem(player);
             scene->addItem(cupboard2_L);
@@ -280,6 +306,22 @@ void Game::update()
     else if (player->pState == 'I' && player->facing == 'T')
     {
         switchDialog->show();
+
+        if (switchDialog->getYesClicked() == true)
+        {
+            // play flip sound
+            if (snd_flip->state() == QMediaPlayer::PlayingState)
+                snd_flip->setPosition(0);
+            else if (snd_flip->state() == QMediaPlayer::StoppedState)
+                snd_flip->play();
+
+            // Change item
+            scene->removeItem(table1_L);
+            scene->removeItem(player);
+            scene->addItem(table2_L);
+            scene->addItem(player);
+            player->setFocus();
+        }else{}
     }
     // -plant
     else if (player->pState == 'I' && player->facing == 'p')
